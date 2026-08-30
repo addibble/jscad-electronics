@@ -29,7 +29,13 @@ const tryAssemblyHardware = (
   jscad: typeof jscadModeling,
 ): RenderResult | null => {
   if (!isAssemblyHardwareString(footprint)) return null
-  return { geometries: [{ geom: getAssemblyHardwareGeom(footprint, jscad) }] }
+  const geom = getAssemblyHardwareGeom(footprint, jscad)
+  // The part states its own material with a `colorize` in its plan, and jscad
+  // leaves that on the geometry. Lift it onto the ColoredGeom so it reaches the
+  // renderer -- otherwise the colour is present in the solid and invisible to
+  // everything downstream, and hardware silently takes the scene's fallback.
+  const color = (geom as { color?: [number, number, number, number] }).color
+  return { geometries: [{ geom, ...(color ? { color } : {}) }] }
 }
 
 export function getJscadModelForFootprint(
