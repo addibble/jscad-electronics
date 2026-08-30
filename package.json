@@ -29,6 +29,7 @@
     "test": "bun test"
   },
   "dependencies": {
+    "@tscircuit/jscad-assembly-hardware": "^0.0.1",
     "@tscircuit/mm": "^0.0.8",
     "@tscircuit/modelprinter": "^0.0.2"
   },
