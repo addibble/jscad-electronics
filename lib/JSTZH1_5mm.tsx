@@ -126,6 +126,11 @@ export const JSTZH1_5mm = ({
                 rect_pad_height: 1.73,
                 hole_shape: "circle",
                 pad_shape: "rect",
+                // Required on circuit-json's resolved type: the schema defaults
+                // them to 0, so they are optional to WRITE but present once
+                // parsed -- and this literal is typed as the parsed form.
+                hole_offset_x: 0,
+                hole_offset_y: 0,
                 layers: ["top", "bottom"],
                 port_hints: [`${i + 1}`],
               }
@@ -139,6 +144,8 @@ export const JSTZH1_5mm = ({
                 hole_width: 0.73,
                 outer_height: 1.73,
                 outer_width: 1.03,
+                // Required on the resolved type, as with hole_offset above.
+                ccw_rotation: 0,
                 layers: ["top", "bottom"],
                 port_hints: [`${i + 1}`],
               }
