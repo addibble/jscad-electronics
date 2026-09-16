@@ -48,6 +48,19 @@ export default () => {
 
 This example creates a 3D model of an SOT-23-3P component with extruded pads.
 
+## Assembly hardware
+
+`getJscadModelForFootprint` from `jscad-electronics/vanilla` also accepts
+modelprinter hardware strings: `screw_m3_l8_socketcap`,
+`bolt_m3_l12_countersunk`, `heatsetinsert_m3_l5.7`, and
+`spacer_od6_id3.2_l4`. They produce catalogue-backed solids with their own
+linear RGB material colors, through `@tscircuit/jscad-assembly-hardware`.
+Both the viewer and exporter consume this entry point.
+
+Hardware stays in its native Z-up millimeter frame: screw head/shank junction
+at zero, insert/spacer upper face at zero, bodies extending toward -Z.
+Placement and FDM allowances are caller responsibilities.
+
 ## Available Components
 
 jscad-electronics includes models for various components, including:
